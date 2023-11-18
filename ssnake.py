@@ -38,7 +38,7 @@ pygame.event.set_allowed(pygame.QUIT);
 # Schleife Hauptprogramm
 while spielaktiv:
      
-     pygame.time.Clock().tick(5);
+     pygame.time.Clock().tick(6);
      for event in pygame.event.get():
           if event.type == pygame.QUIT:
                spielaktiv = False;
@@ -46,7 +46,7 @@ while spielaktiv:
                if event.key == (pygame.K_LEFT) and ver:
                     directionX = -1; directionY = 0;
                elif event.key == (pygame.K_RIGHT) and ver:
-                    directionX = 1; directionY = 0;
+                    directionX = 1; directionY =0 ;
                elif event.key == (pygame.K_UP) and hor:
                     directionX = 0; directionY = -1;
                elif event.key == (pygame.K_DOWN) and hor:
@@ -57,7 +57,6 @@ while spielaktiv:
      
      if field[HeadpointY][HeadpointX] != 0 and field[HeadpointY][HeadpointX] != Snakesize:
           spielaktiv = False
-
      else:
           field[(HeadpointY)][(HeadpointX)] = Snakesize;
           hor = directionY == 0
@@ -71,15 +70,14 @@ while spielaktiv:
                for j in range(cols):
                     if (field[i][j] != 0):
                          field[i][j] -= 1;
-     
-
-     screen.fill(GRUEN);
+     screen.fill(SCHWARZ);
      for i in range(rows):
           for j in range(cols):
                if (field[i][j] != 0):
                     pygame.draw.rect(screen, SCHWARZ, pygame.Rect((j*blocksize, i*blocksize), (blocksize, blocksize)))
-
-     pygame.draw.circle(screen, SCHWARZ, ((blocksize*rpointX + blocksize/2), (blocksize*rpointY + blocksize/2)), blocksize/2);
+                    pygame.draw.rect(screen, WEiSS, pygame.Rect((j*blocksize, i*blocksize), (blocksize - 3, blocksize - 3)))
+     pygame.draw.circle(screen, SCHWARZ, ((blocksize*rpointX + blocksize/2), (blocksize*rpointY + blocksize/2)), blocksize/2)
+     pygame.draw.circle(screen, ROT, ((blocksize*rpointX + blocksize/2), (blocksize*rpointY + blocksize/2)), blocksize/2 - 3);
      pygame.display.flip();
         
     
